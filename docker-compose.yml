@@ -1,0 +1,18 @@
+version: '2'
+services:
+    frontend:
+        image: nginx
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./dist/QuemMeAjuda/:/var/www/quem-me-ajuda/:ro
+        ports:
+            - 4000:80
+    node:
+        image: node
+        volumes:
+            - ./:/project
+        command: npm install -g @angular/cli
+        command: /bin/bash
+        stdin_open: true
+        tty: true
+        working_dir: /project
